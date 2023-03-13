@@ -29,7 +29,7 @@ function App() {
 
 	return (
 		<div style={{padding:50}}>
-			v1.2
+			v1.3
 			{step == 1 ?
 				<>
 					<input type="text"

@@ -25,7 +25,7 @@ function App() {
 	}
 
 	return (
-		<div className="App">
+		<div style={{padding:50}}>
 			{step == 1 ?
 				<>
 					<input type="text"

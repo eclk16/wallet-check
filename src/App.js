@@ -15,27 +15,7 @@ function App() {
 
 	const checkCode = () => {
 		setLoading(true);
-
-	
-
-		fetch(`https://wallet-check.vercel.app:3000/api/account/${wallet}/`)
-			.then(response => response.json())
-			.then(data => {
-				const bio = data.user?.bio;
-				console.log(bio);
-			})
-			.catch(error => console.error(error));
-
-
-
-
-		fetch("https://opensea.io/"+wallet,{
-			headers:{
-				// "Content-Type":"application/text"
-				"Accept":"*/*"
-			},
-			// mode:'no-cors'
-		})
+		fetch("https://wallet-check.vercel.app:3000/api/account/"+wallet)
 		.then((response) => response.text())
 		.then((data) => {
 			if(data.indexOf(code)>-1){

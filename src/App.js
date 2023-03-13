@@ -6,6 +6,7 @@ function App() {
 	const [step,setStep] = useState(1);
 	const [code,setCode] = useState('');
 	const [status,setStatus] = useState('');
+	const [loading,setLoading] = useState(false);
 	const checkWallet = () => {
 		console.log(wallet);
 		setStep(2);
@@ -13,6 +14,7 @@ function App() {
 	}
 
 	const checkCode = () => {
+		setLoading(true);
 		fetch("https://opensea.io/"+wallet)
 		.then((response) => response.text())
 		.then((data) => {
@@ -21,6 +23,7 @@ function App() {
 			}else{
 				setStatus('Onaylanmadı');
 			}
+			setLoading(false);
 		});
 	}
 
@@ -40,7 +43,7 @@ function App() {
 			{step == 2 ?
 				<>
 					<h1>{code}</h1>
-					<h2>{status}</h2>
+					{loading ? <h2>Kontrol ediliyor ...</h2> : <h2>{status}</h2>}
 					<button onClick={checkCode}>Onayla</button>
 				</>
 			: null}

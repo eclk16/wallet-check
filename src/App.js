@@ -1,5 +1,4 @@
 import { useState } from "react";
-import fetchNoCors from "fetch-no-cors"
 
 
 function App() {
@@ -16,7 +15,13 @@ function App() {
 
 	const checkCode = () => {
 		setLoading(true);
-		fetchNoCors("https://opensea.io/"+wallet)
+		fetch("https://opensea.io/"+wallet,{
+			headers:{
+				// "Content-Type":"application/text"
+				"Accept":"*/*"
+			},
+			// mode:'no-cors'
+		})
 		.then((response) => response.text())
 		.then((data) => {
 			if(data.indexOf(code)>-1){
@@ -30,7 +35,7 @@ function App() {
 
 	return (
 		<div style={{padding:50}}>
-			v2
+			v1.2
 			{step == 1 ?
 				<>
 					<input type="text"
